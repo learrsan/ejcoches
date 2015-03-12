@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EjercicioCoches.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form>
+    <input type="text" id="txBus" name="busqueda" placeholder="Buscar...." />
+    <input type="button" id="btnBuscar" value="ok" />
+</form>
+
+
+<p>
+    @Html.ActionLink("Nuevo vehiculo", "Alta")
+</p>
+
+<div id="Vehiculos">
+    @Html.Partial("_Listado", Model)
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnBuscar").click(function () {
+            var cad = $("#txBus").val();
+            $("#Vehiculos").load("/home/buscar?busqueda=" + cad);
+
+        });
+
+
+    });
+
+</script>
+
+
+
+
+
+
