@@ -100,6 +100,7 @@ namespace EjercicioCoches.Controllers
             var db = new VehiculosEntities();
 
             var al = db.Vehiculo.Where(o => o.marca.Contains(busqueda));
+            
             return PartialView("_Listado", al);
         }
     }

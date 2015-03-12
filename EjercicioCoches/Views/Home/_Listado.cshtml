@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<EjercicioCoches.Models.Vehiculo>
 
+
+
 <table class="table">
     <tr>
 
@@ -11,6 +13,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor)
         </th>
         
         <th></th>
@@ -29,11 +34,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.modelo)
             </td>
+            <td>
+                <ul>
+                    @foreach (var con in item.Conductor)
+                    {
+                        <li>
+                            @Html.ActionLink(con.nombre + " " + con.apellidos, "Detalle",
+                  "Conductores", new { id = con.idConductor }, null)
+                        </li>
+                    }
+
+                </ul> 
+            </td>
             
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+               @Html.ActionLink("Modificar", "Modificar", new { item.id })
+            @Html.ActionLink("Borrar", "Borrar", new { item.id })
             </td>
         </tr>
     }
