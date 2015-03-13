@@ -17,6 +17,10 @@ namespace EjercicioCoches.Controllers
         {
             return View(db.Vehiculo);
         }
+        public ActionResult ListadoAjax()
+        {
+            return PartialView("_Listado", db.Vehiculo);
+        }
 
         public ActionResult Alta()
         {
@@ -102,6 +106,21 @@ namespace EjercicioCoches.Controllers
             var al = db.Vehiculo.Where(o => o.marca.Contains(busqueda));
             
             return PartialView("_Listado", al);
+        }
+        [HttpPost]
+        public ActionResult AltaAjax(Vehiculo model)
+        {
+            db.Vehiculo.Add(model);
+
+            try
+            {
+                db.SaveChanges();
+                return Json("OK");
+            }
+            catch (Exception ee)
+            {
+                return Json("Error");
+            }
         }
     }
 }

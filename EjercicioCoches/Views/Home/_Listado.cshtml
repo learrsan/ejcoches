@@ -39,12 +39,15 @@
                     @foreach (var con in item.Conductor)
                     {
                         <li>
-                            @Html.ActionLink(con.nombre + " " + con.apellidos, "Detalle",
-                  "Conductores", new { id = con.idConductor }, null)
+                            @*@Html.ActionLink(con.nombre + " " + con.apellidos, "Detalle",*@
+                            @*"Conductores", new { id = con.idConductor }, null)*@
+
+                            <a href="#" onclick="detalle(@con.idConductor)">@con.nombre @con.apellidos></a>
                         </li>
                     }
 
-                </ul> 
+                </ul>
+
             </td>
             
             <td>
